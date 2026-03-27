@@ -24,8 +24,15 @@ The progress bar changes color based on context window usage: **green** (<50%), 
 
 ## Install
 
+**Option A — Download a release:**
+
+1. Download and extract the [latest release](https://github.com/nandorszentpeteri/claude-statusline/releases/latest)
+2. Run `bash install.sh` from the extracted directory
+
+**Option B — Clone the repo:**
+
 ```bash
-git clone https://gitlab.eng.roku.com/nszentpeteri/claude-statusline.git
+git clone https://github.com/nandorszentpeteri/claude-statusline.git
 cd claude-statusline
 bash install.sh
 ```
