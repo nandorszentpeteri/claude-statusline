@@ -25,14 +25,39 @@ The progress bar changes color based on context window usage: **green** (<50%), 
 ## Install
 
 ```bash
-git clone https://github.com/nandorszentpeteri/claude-statusline.git
+git clone https://gitlab.eng.roku.com/nszentpeteri/claude-statusline.git
 cd claude-statusline
 bash install.sh
 ```
 
-This copies `statusline.sh` to `~/.claude/` and adds the `statusLine` config to `~/.claude/settings.json`.
+The install script will:
+
+- **Back up** your existing `~/.claude/settings.json` (timestamped, e.g. `settings.json.backup.20260327120000`)
+- Copy `statusline.sh` to `~/.claude/`
+- Add the `statusLine` config to `settings.json`
+- **Prompt before overriding** if a `statusLine` config already exists
 
 Restart Claude Code to see the status line.
+
+### Restore from backup
+
+If something goes wrong, restore your previous settings:
+
+```bash
+# List backups
+ls ~/.claude/settings.json.backup.*
+
+# Restore the most recent one
+cp "$(ls -t ~/.claude/settings.json.backup.* | head -1)" ~/.claude/settings.json
+```
+
+### Uninstall
+
+```bash
+rm ~/.claude/statusline.sh
+```
+
+Then remove the `"statusLine"` block from `~/.claude/settings.json`, or restore from a backup.
 
 ## Manual install
 

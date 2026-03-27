@@ -28,7 +28,17 @@ fi
 # Ensure ~/.claude exists
 mkdir -p "$CLAUDE_DIR"
 
-# Copy statusline script
+# Back up existing settings.json before any changes
+if [ -f "$SETTINGS" ]; then
+  BACKUP="$SETTINGS.backup.$(date +%Y%m%d%H%M%S)"
+  cp "$SETTINGS" "$BACKUP"
+  echo "Backed up $SETTINGS to $BACKUP"
+fi
+
+# Copy statusline script (overwrite if exists)
+if [ -f "$DEST" ]; then
+  echo "Overwriting existing $DEST"
+fi
 cp "$SOURCE" "$DEST"
 chmod +x "$DEST"
 echo "Installed statusline.sh to $DEST"
@@ -40,7 +50,26 @@ fi
 
 # Check if statusLine is already configured
 if jq -e '.statusLine' "$SETTINGS" > /dev/null 2>&1; then
-  echo "statusLine already configured in $SETTINGS — skipping"
+  echo ""
+  echo "statusLine is already configured in $SETTINGS:"
+  jq '.statusLine' "$SETTINGS"
+  echo ""
+  read -r -p "Override existing statusLine config? [y/N] " answer
+  case "$answer" in
+    [yY]|[yY][eE][sS])
+      tmp=$(mktemp)
+      if ! jq '.statusLine = {"type": "command", "command": "~/.claude/statusline.sh"}' "$SETTINGS" > "$tmp"; then
+        rm -f "$tmp"
+        echo "Error: failed to update $SETTINGS — is the file valid JSON?"
+        exit 1
+      fi
+      mv "$tmp" "$SETTINGS"
+      echo "Overrode statusLine config in $SETTINGS"
+      ;;
+    *)
+      echo "Kept existing statusLine config"
+      ;;
+  esac
 else
   tmp=$(mktemp)
   if ! jq '. + {"statusLine": {"type": "command", "command": "~/.claude/statusline.sh"}}' "$SETTINGS" > "$tmp"; then
