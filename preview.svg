@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="116" fill="none">
+  <style>
+    .bg { fill: #1e1e2e; rx: 8; }
+    .text { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, monospace; font-size: 13px; }
+    .white { fill: #cdd6f4; }
+    .dim { fill: #6c7086; }
+    .green { fill: #a6e3a1; }
+    .orange { fill: #e8855c; }
+    .red { fill: #ef4444; }
+    .cyan { fill: #89dceb; }
+    .magenta { fill: #cba6f7; }
+  </style>
+  <rect class="bg" width="720" height="116"/>
+  <!-- Line 1: green 28% -->
+  <text class="text" y="32" x="16">
+    <tspan class="white">Claude Opus 4.6 </tspan><tspan class="green">███</tspan><tspan class="dim">░░░░░░░</tspan>
+    <tspan class="green"> 28%</tspan><tspan class="white"> ($0.42)</tspan>
+    <tspan class="dim"> │ </tspan><tspan class="cyan">…/claude-statusline</tspan>
+    <tspan class="dim"> (</tspan><tspan class="magenta">main</tspan><tspan class="dim">)</tspan>
+  </text>
+  <!-- Line 2: orange 60% -->
+  <text class="text" y="62" x="16">
+    <tspan class="white">Claude Opus 4.6 </tspan><tspan class="orange">██████</tspan><tspan class="dim">░░░░</tspan>
+    <tspan class="orange"> 60%</tspan><tspan class="white"> ($1.23)</tspan>
+    <tspan class="dim"> │ </tspan><tspan class="cyan">…/my-project</tspan>
+    <tspan class="dim"> (</tspan><tspan class="magenta">feat/api</tspan><tspan class="dim">)</tspan>
+  </text>
+  <!-- Line 3: red 87% -->
+  <text class="text" y="92" x="16">
+    <tspan class="white">Claude Opus 4.6 </tspan><tspan class="red">████████▋</tspan><tspan class="dim">░</tspan>
+    <tspan class="red"> 87%</tspan><tspan class="white"> ($3.50)</tspan>
+    <tspan class="dim"> │ </tspan><tspan class="cyan">~/dev</tspan>
+    <tspan class="dim"> (</tspan><tspan class="magenta">fix/auth</tspan><tspan class="dim">)</tspan>
+  </text>
+</svg>

@@ -2,9 +2,13 @@
 
 A custom status line for [Claude Code](https://claude.ai/code) that shows model info, context usage, cost, working directory, and git branch.
 
-```
-Claude Opus 4.6 ██████░░░░ 60% ($1.23) │ …/my-project (main)
-```
+## Preview
+
+<p align="center">
+  <img src="preview.svg" alt="Status line preview showing green, orange, and red context usage bars" width="720">
+</p>
+
+The progress bar changes color based on context window usage: **green** (<50%), **orange** (50–80%), **red** (>80%).
 
 ## Features
 
