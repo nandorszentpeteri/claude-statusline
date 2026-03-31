@@ -45,6 +45,7 @@ else
 fi
 
 blocks=("" "▏" "▎" "▍" "▌" "▋" "▊" "▉" "█")
+gray_bg='\033[48;5;238m'
 width=10
 total_eighths=$(( pct * width * 8 / 100 ))
 full_cells=$(( total_eighths / 8 ))
@@ -53,14 +54,16 @@ empty_cells=$(( width - full_cells - (remainder > 0 ? 1 : 0) ))
 
 bar=""
 for ((i=0; i<full_cells; i++)); do bar+="█"; done
+
+partial=""
 if [ "$remainder" -gt 0 ]; then
-  bar+="${blocks[$remainder]}"
+  partial="${gray_bg}${color}${blocks[$remainder]}${reset}"
 fi
 
 empty_bar=""
 for ((i=0; i<empty_cells; i++)); do empty_bar+="░"; done
 
-ctx="${color}${bar}${reset}${dim}${empty_bar}${reset} ${color}${pct}%${reset}"
+ctx="${color}${bar}${reset}${partial}${dim}${empty_bar}${reset} ${color}${pct}%${reset}"
 
 # Format cost
 cost_str=""
